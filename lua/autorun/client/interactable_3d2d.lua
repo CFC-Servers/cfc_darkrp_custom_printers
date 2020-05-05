@@ -139,20 +139,17 @@ Interactive2D3D.MakeButton = function( self, x, y, w, h, Name )
     return Button
 end
 
-function cam.EndInteractive3D2D()
-    cam.End3D2D()
+function cam.StartInteractive3D2D( vector, angle, scale )
+    cam.Start3D2D( vector, angle, scale )
+    Interactive2D3D:Start( vector, angle, scale )
 end
 
-function cam.StartInteractive3D2D( vector, angle, scale, distance )
+function cam.EndInteractive3D2D()
     if distance then
         if vector:Distance( LocalPlayer():GetPos() ) < distance then
-            cam.Start3D2D( vector, angle, scale )
-            Interactive2D3D:Start( vector, angle, scale )
-        else
-            Interactive2D3D:Finish()
+            cam.End3D2D()
         end
     else
-        cam.Start3D2D( vector, angle, scale )
-        Interactive2D3D:Start( vector, angle, scale )
+        cam.End3D2D()
     end
 end
